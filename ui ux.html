@@ -1,0 +1,1856 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalDriveHub UI Design Presentation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'AlibabaSans';
+            src: url('https://assets-persist.lovart.ai/agent-static-assets/AlibabaSans-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'AlibabaSans';
+            src: url('https://assets-persist.lovart.ai/agent-static-assets/AlibabaSans-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'AlibabaSans';
+            src: url('https://assets-persist.lovart.ai/agent-static-assets/Alibaba-PuHuiTi-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --primary: #4A90E2;
+            --primary-light: #6BA5E9;
+            --primary-dark: #3A80D2;
+            --background: #F5F7FA;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --success: #27AE60;
+            --warning: #F39C12;
+            --danger: #E74C3C;
+            --white: #FFFFFF;
+            --border: #E0E0E0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'AlibabaSans', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            width: 1500px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-right: 16px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+        }
+
+        .section {
+            margin-bottom: 80px;
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Style Guide Section */
+        .style-guide {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .color-palette {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .colors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .color-item {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 8px;
+            color: white;
+            font-size: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .typography {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .type-sample {
+            margin-bottom: 16px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ui-elements {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            font-family: 'AlibabaSans', sans-serif;
+            font-size: 16px;
+        }
+
+        /* UI Components */
+        .ui-preview {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .dashboard {
+            display: flex;
+            height: 700px;
+        }
+
+        .sidebar {
+            width: 240px;
+            background-color: white;
+            border-right: 1px solid var(--border);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+            padding: 0 8px;
+        }
+
+        .sidebar-logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            margin-right: 12px;
+        }
+
+        .sidebar-logo-text {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .nav-item:hover:not(.active) {
+            background-color: var(--background);
+        }
+
+        .storage-info {
+            margin-top: auto;
+            padding: 16px;
+            background-color: var(--background);
+            border-radius: var(--radius);
+        }
+
+        .storage-progress {
+            height: 8px;
+            background-color: var(--border);
+            border-radius: 4px;
+            margin: 8px 0;
+            overflow: hidden;
+        }
+
+        .storage-progress-bar {
+            height: 100%;
+            width: 65%;
+            background-color: var(--primary);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--background);
+        }
+
+        .topbar {
+            height: 72px;
+            background-color: white;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: var(--background);
+            border-radius: var(--radius);
+            padding: 8px 16px;
+            width: 400px;
+        }
+
+        .search-bar i {
+            color: var(--text-tertiary);
+            margin-right: 12px;
+        }
+
+        .search-input {
+            border: none;
+            background: transparent;
+            flex: 1;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 16px;
+            height: 16px;
+            background-color: var(--danger);
+            border-radius: 50%;
+            font-size: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .breadcrumb i {
+            margin: 0 8px;
+            font-size: 12px;
+        }
+
+        .view-options {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            color: var(--text-tertiary);
+            cursor: pointer;
+        }
+
+        .view-option.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .file-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .file-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .file-icon {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--background);
+            font-size: 48px;
+            color: var(--primary);
+        }
+
+        .file-icon.image {
+            background-color: #E1F5FE;
+            color: #03A9F4;
+        }
+
+        .file-icon.document {
+            background-color: #E8F5E9;
+            color: #4CAF50;
+        }
+
+        .file-icon.spreadsheet {
+            background-color: #FFF8E1;
+            color: #FFC107;
+        }
+
+        .file-icon.presentation {
+            background-color: #FBE9E7;
+            color: #FF5722;
+        }
+
+        .file-info {
+            padding: 16px;
+        }
+
+        .file-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .file-list {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .file-list-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 80px;
+            padding: 16px 24px;
+            background-color: var(--background);
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .file-list-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 80px;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+
+        .file-list-item:hover {
+            background-color: var(--background);
+        }
+
+        .file-list-name {
+            display: flex;
+            align-items: center;
+        }
+
+        .file-list-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 20px;
+        }
+
+        .file-list-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .action-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            cursor: pointer;
+        }
+
+        .action-icon:hover {
+            background-color: var(--background);
+            color: var(--primary);
+        }
+
+        /* Upload Modal */
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal {
+            width: 600px;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-tertiary);
+        }
+
+        .modal-close:hover {
+            background-color: var(--background);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .upload-text {
+            margin-bottom: 16px;
+        }
+
+        .upload-list {
+            margin-top: 24px;
+        }
+
+        .upload-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .upload-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 20px;
+            background-color: var(--background);
+            color: var(--primary);
+        }
+
+        .upload-item-info {
+            flex: 1;
+        }
+
+        .upload-progress {
+            height: 4px;
+            background-color: var(--border);
+            border-radius: 2px;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+
+        .upload-progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+        }
+
+        /* File Preview Panel */
+        .preview-panel {
+            width: 360px;
+            background-color: white;
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--background);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .preview-image i {
+            font-size: 64px;
+            color: var(--primary);
+        }
+
+        .preview-details {
+            margin-bottom: 24px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-label {
+            color: var(--text-tertiary);
+        }
+
+        .preview-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Settings Page */
+        .settings-container {
+            display: flex;
+            height: 700px;
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .settings-sidebar {
+            width: 240px;
+            border-right: 1px solid var(--border);
+            padding: 24px 0;
+        }
+
+        .settings-nav-item {
+            padding: 16px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+        }
+
+        .settings-nav-item i {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .settings-nav-item.active {
+            background-color: var(--background);
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+
+        .settings-content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .settings-section {
+            margin-bottom: 40px;
+        }
+
+        .settings-section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            border-radius: 34px;
+            transition: .4s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .4s;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Responsive Views */
+        .responsive-views {
+            display: flex;
+            gap: 40px;
+        }
+
+        .mobile-view {
+            width: 320px;
+            height: 640px;
+            border-radius: 24px;
+            border: 12px solid #333;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .mobile-header {
+            height: 60px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            color: white;
+        }
+
+        .mobile-content {
+            height: calc(100% - 60px);
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .mobile-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .tablet-view {
+            width: 768px;
+            height: 540px;
+            border-radius: 12px;
+            border: 12px solid #333;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .tablet-content {
+            display: flex;
+            height: 100%;
+        }
+
+        .tablet-sidebar {
+            width: 200px;
+            background-color: white;
+            border-right: 1px solid var(--border);
+            padding: 16px;
+        }
+
+        .tablet-main {
+            flex: 1;
+            padding: 16px;
+            background-color: var(--background);
+            overflow-y: auto;
+        }
+
+        /* Annotations */
+        .annotation {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .annotation-content {
+            position: absolute;
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            width: 240px;
+            z-index: 10;
+            display: none;
+        }
+
+        .annotation:hover + .annotation-content {
+            display: block;
+        }
+
+        .annotation-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .annotation-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="ri-hard-drive-2-line"></i>
+                </div>
+                <h1>LocalDriveHub</h1>
+            </div>
+            <p>UI Design Presentation for a Modern File Management System</p>
+        </header>
+
+        <!-- Style Guide Section -->
+        <section class="section">
+            <h2>Style Guide</h2>
+            <div class="style-guide">
+                <div class="color-palette">
+                    <h3>Color Palette</h3>
+                    <div class="colors">
+                        <div class="color-item" style="background-color: #4A90E2;">
+                            Primary<br>#4A90E2
+                        </div>
+                        <div class="color-item" style="background-color: #F5F7FA; color: #333;">
+                            Background<br>#F5F7FA
+                        </div>
+                        <div class="color-item" style="background-color: #27AE60;">
+                            Success<br>#27AE60
+                        </div>
+                        <div class="color-item" style="background-color: #E74C3C;">
+                            Danger<br>#E74C3C
+                        </div>
+                        <div class="color-item" style="background-color: #F39C12;">
+                            Warning<br>#F39C12
+                        </div>
+                    </div>
+                </div>
+
+                <div class="typography">
+                    <h3>Typography</h3>
+                    <div class="type-sample" style="font-size: 24px; font-weight: bold;">
+                        Heading 1 (24px Bold)
+                    </div>
+                    <div class="type-sample" style="font-size: 20px; font-weight: 500;">
+                        Heading 2 (20px Medium)
+                    </div>
+                    <div class="type-sample" style="font-size: 16px; font-weight: 500;">
+                        Heading 3 (16px Medium)
+                    </div>
+                    <div class="type-sample" style="font-size: 16px;">
+                        Body Text (16px Regular)
+                    </div>
+                    <div class="type-sample" style="font-size: 14px; color: var(--text-secondary);">
+                        Secondary Text (14px Regular)
+                    </div>
+                    <div class="type-sample" style="font-size: 12px; color: var(--text-tertiary);">
+                        Caption Text (12px Regular)
+                    </div>
+                </div>
+
+                <div class="ui-elements">
+                    <h3>UI Elements</h3>
+                    <div class="buttons">
+                        <button class="btn btn-primary">
+                            <i class="ri-upload-2-line"></i>
+                            Upload
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="ri-folder-add-line"></i>
+                            New Folder
+                        </button>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-success">
+                            <i class="ri-check-line"></i>
+                            Confirm
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="ri-delete-bin-line"></i>
+                            Delete
+                        </button>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="input" placeholder="Search files...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard View (Grid View) -->
+        <section class="section">
+            <h2>Main Dashboard View (Grid View)</h2>
+            <div class="ui-preview">
+                <div class="dashboard">
+                    <div class="sidebar">
+                        <div class="sidebar-logo">
+                            <div class="sidebar-logo-icon">
+                                <i class="ri-hard-drive-2-line"></i>
+                            </div>
+                            <div class="sidebar-logo-text">LocalDriveHub</div>
+                        </div>
+                        
+                        <div class="nav-item active">
+                            <i class="ri-home-line"></i>
+                            <span>Home</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-folder-line"></i>
+                            <span>My Files</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-share-line"></i>
+                            <span>Shared</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-star-line"></i>
+                            <span>Favorites</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-time-line"></i>
+                            <span>Recent</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-delete-bin-line"></i>
+                            <span>Trash</span>
+                        </div>
+                        
+                        <div class="storage-info">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Storage</span>
+                                <span>65% used</span>
+                            </div>
+                            <div class="storage-progress">
+                                <div class="storage-progress-bar"></div>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">
+                                6.5 GB of 10 GB
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="main-content">
+                        <div class="topbar">
+                            <div class="search-bar">
+                                <i class="ri-search-line"></i>
+                                <input type="text" class="search-input" placeholder="Search files, folders...">
+                            </div>
+                            
+                            <div class="user-menu">
+                                <div class="notification-icon">
+                                    <i class="ri-notification-3-line"></i>
+                                    <span class="notification-badge">3</span>
+                                </div>
+                                <div class="user-avatar">JD</div>
+                                <div>
+                                    <div style="font-weight: 500;">John Doe</div>
+                                    <div style="font-size: 12px; color: var(--text-tertiary);">john@example.com</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-area">
+                            <div class="content-header">
+                                <div>
+                                    <h3>My Files</h3>
+                                    <div class="breadcrumb">
+                                        <span>Home</span>
+                                        <i class="ri-arrow-right-s-line"></i>
+                                        <span>My Files</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 16px;">
+                                    <div class="view-options">
+                                        <div class="view-option active">
+                                            <i class="ri-grid-line"></i>
+                                        </div>
+                                        <div class="view-option">
+                                            <i class="ri-list-check"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary">
+                                        <i class="ri-upload-2-line"></i>
+                                        Upload
+                                    </button>
+                                    <button class="btn btn-secondary">
+                                        <i class="ri-folder-add-line"></i>
+                                        New Folder
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="file-grid">
+                                <div class="file-card">
+                                    <div class="file-icon image">
+                                        <i class="ri-image-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">vacation_photo.jpg</div>
+                                        <div class="file-meta">
+                                            <span>2.4 MB</span>
+                                            <span>Apr 12, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon document">
+                                        <i class="ri-file-text-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">project_proposal.docx</div>
+                                        <div class="file-meta">
+                                            <span>1.2 MB</span>
+                                            <span>Apr 10, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon spreadsheet">
+                                        <i class="ri-file-excel-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">budget_2023.xlsx</div>
+                                        <div class="file-meta">
+                                            <span>3.5 MB</span>
+                                            <span>Apr 8, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon presentation">
+                                        <i class="ri-file-ppt-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">quarterly_report.pptx</div>
+                                        <div class="file-meta">
+                                            <span>5.8 MB</span>
+                                            <span>Apr 5, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon">
+                                        <i class="ri-folder-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">Project Alpha</div>
+                                        <div class="file-meta">
+                                            <span>12 files</span>
+                                            <span>Apr 2, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon">
+                                        <i class="ri-folder-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">Marketing Materials</div>
+                                        <div class="file-meta">
+                                            <span>8 files</span>
+                                            <span>Mar 28, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon image">
+                                        <i class="ri-image-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">logo_design.png</div>
+                                        <div class="file-meta">
+                                            <span>1.8 MB</span>
+                                            <span>Mar 25, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon document">
+                                        <i class="ri-file-pdf-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">contract.pdf</div>
+                                        <div class="file-meta">
+                                            <span>4.2 MB</span>
+                                            <span>Mar 20, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Annotations -->
+                <div class="annotation" style="top: 100px; left: 120px;">1</div>
+                <div class="annotation-content" style="top: 100px; left: 150px;">
+                    <div class="annotation-title">Navigation Sidebar</div>
+                    <div class="annotation-text">Provides quick access to main sections. The active item is highlighted with the primary color. Storage usage is displayed at the bottom.</div>
+                </div>
+                
+                <div class="annotation" style="top: 100px; right: 200px;">2</div>
+                <div class="annotation-content" style="top: 100px; right: 230px;">
+                    <div class="annotation-title">Top Bar</div>
+                    <div class="annotation-text">Contains search functionality and user profile information. Notifications are indicated with a badge showing unread count.</div>
+                </div>
+                
+                <div class="annotation" style="top: 300px; right: 300px;">3</div>
+                <div class="annotation-content" style="top: 300px; right: 330px;">
+                    <div class="annotation-title">Grid View</div>
+                    <div class="annotation-text">Files and folders are displayed as cards with visual indicators for file types. Hover effects provide feedback for interactive elements.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- List View Alternative -->
+        <section class="section">
+            <h2>List View Alternative</h2>
+            <div class="ui-preview">
+                <div class="dashboard">
+                    <div class="sidebar">
+                        <div class="sidebar-logo">
+                            <div class="sidebar-logo-icon">
+                                <i class="ri-hard-drive-2-line"></i>
+                            </div>
+                            <div class="sidebar-logo-text">LocalDriveHub</div>
+                        </div>
+                        
+                        <div class="nav-item active">
+                            <i class="ri-home-line"></i>
+                            <span>Home</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-folder-line"></i>
+                            <span>My Files</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-share-line"></i>
+                            <span>Shared</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-star-line"></i>
+                            <span>Favorites</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-time-line"></i>
+                            <span>Recent</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-delete-bin-line"></i>
+                            <span>Trash</span>
+                        </div>
+                        
+                        <div class="storage-info">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Storage</span>
+                                <span>65% used</span>
+                            </div>
+                            <div class="storage-progress">
+                                <div class="storage-progress-bar"></div>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">
+                                6.5 GB of 10 GB
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="main-content">
+                        <div class="topbar">
+                            <div class="search-bar">
+                                <i class="ri-search-line"></i>
+                                <input type="text" class="search-input" placeholder="Search files, folders...">
+                            </div>
+                            
+                            <div class="user-menu">
+                                <div class="notification-icon">
+                                    <i class="ri-notification-3-line"></i>
+                                    <span class="notification-badge">3</span>
+                                </div>
+                                <div class="user-avatar">JD</div>
+                                <div>
+                                    <div style="font-weight: 500;">John Doe</div>
+                                    <div style="font-size: 12px; color: var(--text-tertiary);">john@example.com</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-area">
+                            <div class="content-header">
+                                <div>
+                                    <h3>My Files</h3>
+                                    <div class="breadcrumb">
+                                        <span>Home</span>
+                                        <i class="ri-arrow-right-s-line"></i>
+                                        <span>My Files</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 16px;">
+                                    <div class="view-options">
+                                        <div class="view-option">
+                                            <i class="ri-grid-line"></i>
+                                        </div>
+                                        <div class="view-option active">
+                                            <i class="ri-list-check"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary">
+                                        <i class="ri-upload-2-line"></i>
+                                        Upload
+                                    </button>
+                                    <button class="btn btn-secondary">
+                                        <i class="ri-folder-add-line"></i>
+                                        New Folder
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="file-list">
+                                <div class="file-list-header">
+                                    <div>Name</div>
+                                    <div>Size</div>
+                                    <div>Modified</div>
+                                    <div>Owner</div>
+                                    <div>Actions</div>
+                                </div>
+                                
+                                <div class="file-list-item">
+                                    <div class="file-list-name">
+                                        <div class="file-list-icon" style="background-color: #E1F5FE; color: #03A9F4;">
+                                            <i class="ri-image-line"></i>
+                                        </div>
+                                        <div>vacation_photo.jpg</div>
+                                    </div>
+                                    <div>2.4 MB</div>
+                                    <div>Apr 12, 2023</div>
+                                    <div>Me</div>
+                                    <div class="file-list-actions">
+                                        <div class="action-icon">
+                                            <i class="ri-share-line"></i>
+                                        </div>
+                                        <div class="action-icon">
+                                            <i class="ri-more-2-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-list-item">
+                                    <div class="file-list-name">
+                                        <div class="file-list-icon" style="background-color: #E8F5E9; color: #4CAF50;">
+                                            <i class="ri-file-text-line"></i>
+                                        </div>
+                                        <div>project_proposal.docx</div>
+                                    </div>
+                                    <div>1.2 MB</div>
+                                    <div>Apr 10, 2023</div>
+                                    <div>Me</div>
+                                    <div class="file-list-actions">
+                                        <div class="action-icon">
+                                            <i class="ri-share-line"></i>
+                                        </div>
+                                        <div class="action-icon">
+                                            <i class="ri-more-2-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-list-item">
+                                    <div class="file-list-name">
+                                        <div class="file-list-icon" style="background-color: #FFF8E1; color: #FFC107;">
+                                            <i class="ri-file-excel-line"></i>
+                                        </div>
+                                        <div>budget_2023.xlsx</div>
+                                    </div>
+                                    <div>3.5 MB</div>
+                                    <div>Apr 8, 2023</div>
+                                    <div>Me</div>
+                                    <div class="file-list-actions">
+                                        <div class="action-icon">
+                                            <i class="ri-share-line"></i>
+                                        </div>
+                                        <div class="action-icon">
+                                            <i class="ri-more-2-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-list-item">
+                                    <div class="file-list-name">
+                                        <div class="file-list-icon" style="background-color: #FBE9E7; color: #FF5722;">
+                                            <i class="ri-file-ppt-line"></i>
+                                        </div>
+                                        <div>quarterly_report.pptx</div>
+                                    </div>
+                                    <div>5.8 MB</div>
+                                    <div>Apr 5, 2023</div>
+                                    <div>Me</div>
+                                    <div class="file-list-actions">
+                                        <div class="action-icon">
+                                            <i class="ri-share-line"></i>
+                                        </div>
+                                        <div class="action-icon">
+                                            <i class="ri-more-2-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-list-item">
+                                    <div class="file-list-name">
+                                        <div class="file-list-icon" style="background-color: var(--background); color: var(--primary);">
+                                            <i class="ri-folder-line"></i>
+                                        </div>
+                                        <div>Project Alpha</div>
+                                    </div>
+                                    <div>12 files</div>
+                                    <div>Apr 2, 2023</div>
+                                    <div>Me</div>
+                                    <div class="file-list-actions">
+                                        <div class="action-icon">
+                                            <i class="ri-share-line"></i>
+                                        </div>
+                                        <div class="action-icon">
+                                            <i class="ri-more-2-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-list-item">
+                                    <div class="file-list-name">
+                                        <div class="file-list-icon" style="background-color: var(--background); color: var(--primary);">
+                                            <i class="ri-folder-line"></i>
+                                        </div>
+                                        <div>Marketing Materials</div>
+                                    </div>
+                                    <div>8 files</div>
+                                    <div>Mar 28, 2023</div>
+                                    <div>Me</div>
+                                    <div class="file-list-actions">
+                                        <div class="action-icon">
+                                            <i class="ri-share-line"></i>
+                                        </div>
+                                        <div class="action-icon">
+                                            <i class="ri-more-2-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Annotations -->
+                <div class="annotation" style="top: 300px; right: 300px;">1</div>
+                <div class="annotation-content" style="top: 300px; right: 330px;">
+                    <div class="annotation-title">List View</div>
+                    <div class="annotation-text">Provides a more detailed view with columns for file properties. Allows for better sorting and organization of files. Each row has action buttons for quick operations.</div>
+                </div>
+                
+                <div class="annotation" style="top: 180px; right: 150px;">2</div>
+                <div class="annotation-content" style="top: 180px; right: 180px;">
+                    <div class="annotation-title">View Toggle</div>
+                    <div class="annotation-text">Users can switch between grid and list views based on their preference. The active view is highlighted with the primary color.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Modal -->
+        <section class="section">
+            <h2>Upload Modal</h2>
+            <div class="ui-preview" style="height: 600px;">
+                <div class="dashboard" style="opacity: 0.3;">
+                    <div class="sidebar">
+                        <div class="sidebar-logo">
+                            <div class="sidebar-logo-icon">
+                                <i class="ri-hard-drive-2-line"></i>
+                            </div>
+                            <div class="sidebar-logo-text">LocalDriveHub</div>
+                        </div>
+                        
+                        <div class="nav-item active">
+                            <i class="ri-home-line"></i>
+                            <span>Home</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-folder-line"></i>
+                            <span>My Files</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-share-line"></i>
+                            <span>Shared</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-star-line"></i>
+                            <span>Favorites</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-time-line"></i>
+                            <span>Recent</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-delete-bin-line"></i>
+                            <span>Trash</span>
+                        </div>
+                    </div>
+                    
+                    <div class="main-content">
+                        <div class="topbar">
+                            <div class="search-bar">
+                                <i class="ri-search-line"></i>
+                                <input type="text" class="search-input" placeholder="Search files, folders...">
+                            </div>
+                            
+                            <div class="user-menu">
+                                <div class="notification-icon">
+                                    <i class="ri-notification-3-line"></i>
+                                    <span class="notification-badge">3</span>
+                                </div>
+                                <div class="user-avatar">JD</div>
+                                <div>
+                                    <div style="font-weight: 500;">John Doe</div>
+                                    <div style="font-size: 12px; color: var(--text-tertiary);">john@example.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-overlay">
+                    <div class="modal">
+                        <div class="modal-header">
+                            <div class="modal-title">Upload Files</div>
+                            <div class="modal-close">
+                                <i class="ri-close-line"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <div class="upload-area">
+                                <div class="upload-icon">
+                                    <i class="ri-upload-cloud-2-line"></i>
+                                </div>
+                                <div class="upload-text">
+                                    <div style="font-weight: 500; margin-bottom: 8px;">Drag & drop files here</div>
+                                    <div style="color: var(--text-tertiary);">or click to browse</div>
+                                </div>
+                                <button class="btn btn-primary">Browse Files</button>
+                            </div>
+                            
+                            <div class="upload-list">
+                                <div class="upload-item">
+                                    <div class="upload-item-icon">
+                                        <i class="ri-image-line"></i>
+                                    </div>
+                                    <div class="upload-item-info">
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div style="font-weight: 500;">presentation.jpg</div>
+                                            <div>2.4 MB</div>
+                                        </div>
+                                        <div class="upload-progress">
+                                            <div class="upload-progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="upload-item">
+                                    <div class="upload-item-icon">
+                                        <i class="ri-file-pdf-line"></i>
+                                    </div>
+                                    <div class="upload-item-info">
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div style="font-weight: 500;">report.pdf</div>
+                                            <div>4.8 MB</div>
+                                        </div>
+                                        <div class="upload-progress">
+                                            <div class="upload-progress-bar" style="width: 65%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="upload-item">
+                                    <div class="upload-item-icon">
+                                        <i class="ri-file-excel-line"></i>
+                                    </div>
+                                    <div class="upload-item-info">
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div style="font-weight: 500;">data.xlsx</div>
+                                            <div>1.2 MB</div>
+                                        </div>
+                                        <div class="upload-progress">
+                                            <div class="upload-progress-bar" style="width: 30%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Cancel</button>
+                            <button class="btn btn-primary">Upload All</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Annotations -->
+                <div class="annotation" style="top: 150px; left: 300px;">1</div>
+                <div class="annotation-content" style="top: 150px; left: 330px;">
+                    <div class="annotation-title">Upload Modal</div>
+                    <div class="annotation-text">Appears as an overlay on top of the main interface. Provides a clear drag & drop area for files and shows upload progress for each file.</div>
+                </div>
+                
+                <div class="annotation" style="top: 300px; left: 400px;">2</div>
+                <div class="annotation-content" style="top: 300px; left: 430px;">
+                    <div class="annotation-title">Upload Progress</div>
+                    <div class="annotation-text">Visual indicators show upload progress for each file. Users can see file names, sizes, and completion status at a glance.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- File Preview Panel -->
+        <section class="section">
+            <h2>File Preview Panel</h2>
+            <div class="ui-preview">
+                <div class="dashboard">
+                    <div class="sidebar">
+                        <div class="sidebar-logo">
+                            <div class="sidebar-logo-icon">
+                                <i class="ri-hard-drive-2-line"></i>
+                            </div>
+                            <div class="sidebar-logo-text">LocalDriveHub</div>
+                        </div>
+                        
+                        <div class="nav-item active">
+                            <i class="ri-home-line"></i>
+                            <span>Home</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-folder-line"></i>
+                            <span>My Files</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-share-line"></i>
+                            <span>Shared</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-star-line"></i>
+                            <span>Favorites</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-time-line"></i>
+                            <span>Recent</span>
+                        </div>
+                        <div class="nav-item">
+                            <i class="ri-delete-bin-line"></i>
+                            <span>Trash</span>
+                        </div>
+                    </div>
+                    
+                    <div class="main-content">
+                        <div class="topbar">
+                            <div class="search-bar">
+                                <i class="ri-search-line"></i>
+                                <input type="text" class="search-input" placeholder="Search files, folders...">
+                            </div>
+                            
+                            <div class="user-menu">
+                                <div class="notification-icon">
+                                    <i class="ri-notification-3-line"></i>
+                                    <span class="notification-badge">3</span>
+                                </div>
+                                <div class="user-avatar">JD</div>
+                                <div>
+                                    <div style="font-weight: 500;">John Doe</div>
+                                    <div style="font-size: 12px; color: var(--text-tertiary);">john@example.com</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-area">
+                            <div class="content-header">
+                                <div>
+                                    <h3>My Files</h3>
+                                    <div class="breadcrumb">
+                                        <span>Home</span>
+                                        <i class="ri-arrow-right-s-line"></i>
+                                        <span>My Files</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 16px;">
+                                    <div class="view-options">
+                                        <div class="view-option active">
+                                            <i class="ri-grid-line"></i>
+                                        </div>
+                                        <div class="view-option">
+                                            <i class="ri-list-check"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary">
+                                        <i class="ri-upload-2-line"></i>
+                                        Upload
+                                    </button>
+                                    <button class="btn btn-secondary">
+                                        <i class="ri-folder-add-line"></i>
+                                        New Folder
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="file-grid">
+                                <div class="file-card">
+                                    <div class="file-icon image">
+                                        <i class="ri-image-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">vacation_photo.jpg</div>
+                                        <div class="file-meta">
+                                            <span>2.4 MB</span>
+                                            <span>Apr 12, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon document">
+                                        <i class="ri-file-text-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">project_proposal.docx</div>
+                                        <div class="file-meta">
+                                            <span>1.2 MB</span>
+                                            <span>Apr 10, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon spreadsheet">
+                                        <i class="ri-file-excel-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">budget_2023.xlsx</div>
+                                        <div class="file-meta">
+                                            <span>3.5 MB</span>
+                                            <span>Apr 8, 2023</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="file-card">
+                                    <div class="file-icon presentation">
+                                        <i class="ri-file-ppt-line"></i>
+                                    </div>
+                                    <div class="file-info">
+                                        <div class="file-name">quarterly_report.pptx</div>
+                                        <div class="file-meta">
+                                            <span>5.8 MB</span>
+                                            <span>Apr 5, 2023</span>
+                                        </div>
+                                    </div>
